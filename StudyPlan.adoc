@@ -1,0 +1,26 @@
+= Study Plan
+
+[cols="1,1,1,1,1,1", options="header"]
+|===
+| Unit Code |Unit Name| Unit Type |Credits| Unit Status| Teaching Period
+
+|MDS5043 |Data Visualisation |Core |3.00| Done| 2024 T3 - 7/5/2024 - 22/6/2024
+|MDS5033 |Statistical Methods for Data Science |Core |3.00 |Done |2024 T4 - 2/7/2024 - 17/8/2024
+|MDS5013 |Principles and Practices of Data Science |Core |3.00 |Done |2024 T5 - 3/9/2024 - 19/10/2024
+|MDS5023 |Programming for Data Science |Core |3.00 |In Progress |2024 T6 - 29/10/2024 - 14/12/2024
+|MRM5013 |Research Methodology |Core| 3.00 |Planned |2025 T1 - 6/1/2025 - 20/2/2025
+|MDA5023 |Forecasting Analytics |Electives |3.00 |Planned |2025 T2 - 7/3/2025 - 1/5/2025
+|MDA5013 |Deep Learning for Data Science |Electives| 3.00 |Planned |2025 T3 - 9/5/2025 - 26/6/2025
+|MDB5013 |Cloud Infrastructure and Service |Electives |3.00 |Planned |2025 T4 - 4/7/2025 - 21/8/2025
+|MDM5063 |Data Mining |Core| 3.00 |Planned |2025 T5 - 29/8/2025 - 16/10/2025
+|MDM5053 |Big Data Management |Core| 3.00| Planned |2025 T6 - 24/10/2025 -
+11/12/2025
+|MRP5015 |Data Science Capstone Project 1 |Capstone| 5.00 |Planned |2026 T1 - 12/1/2026 - 27/2/2026
+|MRP5025 |Data Science Capstone Project 2 |Capstone |5.00 |Planned 2026 |T2 - 9/3/2026 - 24/4/2026
+|===
+
+Statistical Methods for Data Science (MDS5033) is a prerequisite for Forecasting Analytics (MDA5023)
+
+Programming for Data Science (MDS5023) is a prerequisite for Deep Learning for Data Science (MDA5013)
+
+Data Science Capstone Project 1 (MRP5015) is a prerequisite for Data Science Capstone Project 2 (MRP5025
