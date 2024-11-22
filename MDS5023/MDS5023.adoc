@@ -1,0 +1,245 @@
+= MDS5023
+:toc:
+
+= Chapter 4 Pandas and NumPy
+== 4.1 Pandas and NumPy
+*NumPy* introduces the ndarray data structure to store the data and provides efficient functions for numerical operations on the data.
+
+Official Website : https://numpy.org/ 
+
+Official documentation : https://numpy.org/doc/stable/reference/index.html
+
+
+*Pandas* is a library built on top of NumPy to introduce useful and efficient data manipulation tools. pandas provides the data structures of Series and DataFrame that are similar to a tabular data format. 
+
+Official Website : https://pandas.pydata.org/ 
+
+official documentation https://pandas.pydata.org/docs/reference/index.html
+
+== 4.2 ndarrays
+An ndarray is a multidimensional container of items of the same type and size, in other words, an N-dimensional array. 
+
+=== Create
+An ndarray is created by using the numpy.array function. The simplest way of creating an ndarray is by passing a list into the function numpy.array. 
+
+[source,python]
+----
+import numpy as np
+
+arr = np.array([[1,2,3],[4,5,6]])
+print(arr)
+----
+
+=== Size
+It's always advisable that, for an ndarray, there is a fixed size for each dimension.
+For example, [[1,2,3],[4,5,6]]
+
+The array with unfixed size for every dimension is [[1,2,3],[4,5]] need to add python keyword "None" as null [[1,2,3],[4,5, None]] to avoid runtime error
+
+[source, python]
+----
+import numpy as np
+
+pyarr = [[1,2,3],[4,5,None]]
+arr = np.array(pyarr)
+print(arr)
+----
+
+=== Type
+
+The intended use of an ndarray is to contain items of the same type. To ensure all items are of the same type, we can pass the type as the second argument when creating the array with numpy.array. This is useful when the array is constructed elsewhere and we can use it to validate if all items are as intended.
+
+[source, python]
+----
+import numpy as np
+
+arr = np.array([[1,2,3],[4,5,6]], np.int32)
+print(arr)
+----
+
+If we provide a text character as one of the items, as it can't be converted to a numpy.int32, an exception will be raised.
+
+[source, python]
+----
+
+import numpy as np
+
+arr = np.array([[1,2,3],[4,5,'a']], np.int32)
+print(arr)
+
+Traceback (most recent call last):
+  File "/home/main.py", line 3, in <module>
+    arr = np.array([[1,2,3],[4,5,'a']], np.int32)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'a'
+----
+
+The data type (dtype) passed as the second argument of numpy.array has to be a numpy data type. The list of numpy data types can be found here: https://numpy.org/doc/stable/reference/arrays.scalars.html.
+
+
+=== Information of a numpy.array
+
+Once we created an ndarray, the library provided some useful methods to access the information of the ndarray.
+
+[source, python]
+----
+import numpy as np
+
+arr = np.array([[1,2,3],[4,5,6]], np.int32)
+print(f"Number of dimensions: {arr.ndim}")
+print(f"Shape: {arr.shape}")
+print(f"Number of items: {arr.size}")
+print(f"Item type: {arr.dtype}")
+
+Number of dimensions: 2
+Shape: (2, 3)
+Number of items: 6
+Item type: int32
+
+---- 
+
+=== Create ndarray of specific values
+
+NumPy provides numpy.empty to create an empty array of a specific shape. To create an ndarray of shape 2 by 3, we will use numpy.empty([2,3]). By default, the ndarray is created with dtype=numpy.float64. This can be changed by passing the dtype=... argument to change the type of the items.
+[source, python]
+----
+import numpy as np
+
+arr = np.empty([2,3])
+print(arr)
+
+Output :
+[[4.67389883e-310 0.00000000e+000 6.90236217e-310]
+ [6.90236227e-310 6.90236227e-310 6.90236224e-310]]
+----
+
+Keep in mind that the values in the array are not set to zero or any specific value—they are just whatever happens to be in the allocated memory space.
+
+By default, the ndarray is created with dtype=numpy.float64. This can be changed by passing the dtype=... argument to change the type of the items.
+
+If you have a specific shape or dtype you want to use, you can specify that as well:
+
+[source, python]
+----
+# Create an uninitialized array of shape (2, 2) with data type int
+arr = np.empty([2,3],dtype=int)
+print(arr)
+
+Output :
+[[     94635154101705                   0 2314861380520130348]
+ [2916469377872240672  732218897178833755        137977929738]]
+----
+
+We can then use the .fill method of the ndarray to populate all the items as a certain value.
+
+[source, python]
+----
+
+import numpy as np
+arr = np.empty([2,3])
+arr.fill(3)
+print(arr)
+
+Output: 
+[[3. 3. 3.]
+ [3. 3. 3.]]
+----
+To accelerate this process, NumPy has also provided the function of numpy.ones, numpy.zeros, and numpy.full:
+
+
+* numpy.ones creates an array filled with 1's
+
+* numpy.zeros creates an array filled with 0's 
+ 
+* numpy.full creates an array filled with specified value.
+
+[source, python]
+----
+import numpy as np
+
+shape = [2,3]
+arr = np.ones(shape)
+print(arr)
+print("")
+arr = np.zeros(shape)
+print(arr)
+print("")
+arr = np.full(shape, 3)
+print(arr)
+
+Output:
+
+[[1. 1. 1.]
+ [1. 1. 1.]]
+
+[[0. 0. 0.]
+ [0. 0. 0.]]
+
+[[3 3 3]
+ [3 3 3]]
+----
+
+If we have an array and we want to create an empty array with the same shape, NumPy provides the function numpy.empty_like to help us to achieve it.
+
+[source, python]
+----
+import numpy as np
+
+ori = np.array([[1,2,3],[4,5,6]])
+arr = np.empty_like(ori)
+arr.fill(4)
+print(arr)
+
+Output:
+[[4 4 4]
+ [4 4 4]]
+----
+
+
+== 4.2.1 Saving and loading ndarrays to and from external files
+
+=== 4.2.1.1 Save to file
+An ndarray can be saved to external file. NumPy provides the functions to deal with two types of files:
+
+* the binary files (.npy, .npz)
+
+* the text files
+
+[source, text]
+----
+numpy.save(file, arr)
+----
+
+The numpy.save saves an ndarray to a binary file with the extension of .npy. 
+
+The first argument is the filename to be saved to, and the second argument is the ndarray to be saved
+
+
+If there are more than one ndarray that need to be saved to the same file, we will need to use numpy.savez(file, arr1, arr2, ...). This will save the ndarrays to a binary file with the extension of .npz
+
+[source, text]
+----
+numpy.savetxt(file, arr)
+----
+numpy.savetxt saves an ndarray to a text file. By default, the data is formatted as %.18e separated with space. %.18e means a scientific notation with 18 digits printed after the decimal point. These defaults can be modified as optional arguments for numpy.savetxt. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== Reference
+https://pandas.pydata.org/
