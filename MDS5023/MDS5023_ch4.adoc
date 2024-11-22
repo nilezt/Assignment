@@ -1,7 +1,6 @@
-= MDS5023
+= MDS5023- Chapter 4 Pandas and NumPy
 :toc:
-
-= Chapter 4 Pandas and NumPy
+ 
 == 4.1 Pandas and NumPy
 *NumPy* introduces the ndarray data structure to store the data and provides efficient functions for numerical operations on the data.
 
@@ -19,7 +18,7 @@ official documentation https://pandas.pydata.org/docs/reference/index.html
 == 4.2 ndarrays
 An ndarray is a multidimensional container of items of the same type and size, in other words, an N-dimensional array. 
 
-=== Create
+=== - Create
 An ndarray is created by using the numpy.array function. The simplest way of creating an ndarray is by passing a list into the function numpy.array. 
 
 [source,python]
@@ -30,7 +29,7 @@ arr = np.array([[1,2,3],[4,5,6]])
 print(arr)
 ----
 
-=== Size
+=== - Size
 It's always advisable that, for an ndarray, there is a fixed size for each dimension.
 For example, [[1,2,3],[4,5,6]]
 
@@ -45,7 +44,7 @@ arr = np.array(pyarr)
 print(arr)
 ----
 
-=== Type
+=== - Type
 
 The intended use of an ndarray is to contain items of the same type. To ensure all items are of the same type, we can pass the type as the second argument when creating the array with numpy.array. This is useful when the array is constructed elsewhere and we can use it to validate if all items are as intended.
 
@@ -77,7 +76,7 @@ ValueError: invalid literal for int() with base 10: 'a'
 The data type (dtype) passed as the second argument of numpy.array has to be a numpy data type. The list of numpy data types can be found here: https://numpy.org/doc/stable/reference/arrays.scalars.html.
 
 
-=== Information of a numpy.array
+=== - Information of a numpy.array
 
 Once we created an ndarray, the library provided some useful methods to access the information of the ndarray.
 
@@ -98,7 +97,7 @@ Item type: int32
 
 ---- 
 
-=== Create ndarray of specific values
+=== - Create ndarray of specific values
 
 NumPy provides numpy.empty to create an empty array of a specific shape. To create an ndarray of shape 2 by 3, we will use numpy.empty([2,3]). By default, the ndarray is created with dtype=numpy.float64. This can be changed by passing the dtype=... argument to change the type of the items.
 [source, python]
