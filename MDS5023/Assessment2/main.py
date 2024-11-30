@@ -7,11 +7,11 @@ df = pd.read_csv('shopping_trends.csv')
 
 # Display basic information about the DataFrame
 print("DataFrame Info:")
-print(df.info)
+print(df.info())
 
 # Display the first few rows of the DataFrame
 print("\nFirst 5 Rows:")
-print(df.head)
+print(df.head())
 
 # Display summary statistics of the DataFrame
 print("\Column information:")
@@ -38,3 +38,6 @@ else:
     print("The CSV file does not contain 'Date' and 'Sales' columns.")
 '''
 # Additional analysis can be added here
+
+print("\nMissing Column")
+print(df.isnull().sum())
